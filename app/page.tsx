@@ -96,7 +96,11 @@ export default function Page() {
       <header className="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#A7C8AE] to-[#6D96BD] shadow-sm" />
+            <img
+  src="/logo-aeromed.jpg"
+  alt="Logo Aéromed"
+  className="w-12 h-12 object-contain"
+/>
             <div>
               <div className="font-semibold text-lg tracking-tight">Aéromed</div>
               <div className="text-xs text-slate-500 -mt-1">Maison de Santé Pluriprofessionnelle</div>
