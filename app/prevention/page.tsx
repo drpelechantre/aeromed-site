@@ -1,3 +1,6 @@
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 const preventionActions = [
   {
     date: "2026",
@@ -20,51 +23,7 @@ const preventionActions = [
 export default function PreventionPage() {
   return (
     <div className="min-h-screen bg-[#F8FAF9] text-slate-800 font-sans">
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img
-              src="/logo-aeromed.jpg"
-              alt="Logo Aéromed"
-              className="w-12 h-12 object-contain"
-            />
-            <div>
-              <div className="font-semibold text-lg tracking-tight">Aéromed</div>
-              <div className="text-xs text-slate-500 -mt-1">
-                Maison de Santé Pluriprofessionnelle
-              </div>
-            </div>
-          </a>
-
-          <nav className="hidden lg:flex items-center gap-7 text-sm text-slate-600">
-            <a href="/rendez-vous/" className="hover:text-slate-900 transition">
-              Rendez-vous
-            </a>
-            <a href="/equipe/" className="hover:text-slate-900 transition">
-              Équipe
-            </a>
-            <a href="/projets/" className="hover:text-slate-900 transition">
-              Projets
-            </a>
-            <a href="/recherche/" className="hover:text-slate-900 transition">
-              Recherche
-            </a>
-            <a href="/recrutement/" className="hover:text-slate-900 transition">
-              Recrutement
-            </a>
-            <a href="/contact/" className="hover:text-slate-900 transition">
-              Contact
-            </a>
-          </nav>
-
-          <a
-            href="/rendez-vous/"
-            className="bg-slate-900 text-white px-5 py-2.5 rounded-2xl text-sm hover:bg-slate-800 transition shadow-sm"
-          >
-            Prendre rendez-vous
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main>
         <section className="relative overflow-hidden">
@@ -175,30 +134,7 @@ export default function PreventionPage() {
         </section>
       </main>
 
-      <footer className="border-t border-slate-100 bg-white py-12">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          <div>
-            <div className="font-semibold text-lg">MSP Aéromed</div>
-            <div className="text-slate-500 mt-1 text-sm">
-              Toulouse • Saint-Martin-du-Touch
-            </div>
-          </div>
-          <div>
-            <div className="font-semibold text-slate-900">Secrétariat MSP</div>
-            <div className="text-slate-500 mt-2 text-sm">
-              Téléphone : 05 XX XX XX XX
-            </div>
-            <div className="text-slate-500 mt-1 text-sm">
-              Adresse : à compléter
-            </div>
-          </div>
-          <div className="text-sm text-slate-500 md:text-right">
-            © 2026 Aéromed
-            <br />
-            Maison de Santé Pluriprofessionnelle
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

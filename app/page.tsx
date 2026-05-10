@@ -1,4 +1,6 @@
 import ConsultationGuide from "./components/ConsultationGuide";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 export default function Page() {
   const specialties = [
     {
@@ -71,34 +73,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-[#F8FAF9] text-slate-800 font-sans">
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-  src="/logo-aeromed.jpg"
-  alt="Logo Aéromed"
-  className="w-12 h-12 object-contain"
-/>
-            <div>
-              <div className="font-semibold text-lg tracking-tight">Aéromed</div>
-              <div className="text-xs text-slate-500 -mt-1">Maison de Santé Pluriprofessionnelle</div>
-            </div>
-          </div>
-
-          <nav className="hidden lg:flex items-center gap-7 text-sm text-slate-600">
-            <a href="/rendez-vous/" className="hover:text-slate-900 transition">Rendez-vous</a>
-            <a href="/equipe/" className="hover:text-slate-900 transition">Équipe</a>
-            <a href="/projets/" className="hover:text-slate-900 transition">Projets</a>
-            <a href="#recherche" className="hover:text-slate-900 transition">Recherche</a>
-            <a href="#recrutement" className="hover:text-slate-900 transition">Recrutement</a>
-            <a href="#contact" className="hover:text-slate-900 transition">Contact</a>
-          </nav>
-
-          <a href="#rdv" className="bg-slate-900 text-white px-5 py-2.5 rounded-2xl text-sm hover:bg-slate-800 transition shadow-sm">
-            Prendre rendez-vous
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#E8F1EB] via-white to-[#E8EEF6]" />
@@ -125,18 +100,121 @@ export default function Page() {
           <div className="relative">
             <div className="absolute -top-10 -left-10 w-48 h-48 bg-[#B6D2BE]/30 rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#88AFCF]/30 rounded-full blur-3xl" />
-            <div className="relative bg-white/70 backdrop-blur-xl border border-white shadow-2xl rounded-[36px] p-8">
-              <div className="grid grid-cols-2 gap-4">
-                {specialties.slice(0, 8).map((item) => (
-                  <div key={item.name} className="bg-white rounded-2xl px-4 py-5 shadow-sm border border-slate-100 text-sm font-medium text-slate-700">
-                    {item.name}
-                  </div>
-                ))}
-              </div>
-            </div>
+           <div className="relative bg-white/70 backdrop-blur-xl border border-white shadow-2xl rounded-[36px] p-4">
+ <div className="relative bg-white/70 backdrop-blur-xl border border-white shadow-2xl rounded-[36px] p-4">
+  
+  <div className="grid grid-cols-2 gap-4">
+    
+    <a
+      href="/accueil.jpg"
+      target="_blank"
+      className="col-span-2 overflow-hidden rounded-[28px] h-72 group"
+    >
+      <img
+        src="/accueil.jpg"
+        alt="Maison de Santé Aéromed"
+        className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+      />
+    </a>
+
+    <a
+      href="/salledattente.jpg"
+      target="_blank"
+      className="overflow-hidden rounded-[24px] h-40 group"
+    >
+      <img
+        src="/salledattente.jpg"
+        alt="Salle d’attente"
+        className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+      />
+    </a>
+
+    <a
+      href="/entree.png"
+      target="_blank"
+      className="overflow-hidden rounded-[24px] h-40 group"
+    >
+      <img
+        src="/entree.png"
+        alt="Cabinet médical"
+        className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+      />
+    </a>
+
+  </div>
+
+  <div className="mt-4 bg-white/85 backdrop-blur-xl rounded-2xl px-5 py-4 shadow-sm border border-white/70">
+    <div className="text-sm font-semibold text-slate-900">
+      Un lieu de soins moderne et accueillant
+    </div>
+
+    <div className="text-xs text-slate-500 mt-1">
+      Pensé pour le confort des patients et le travail coordonné.
+    </div>
+  </div>
+
+</div>
+</div>
           </div>
         </div>
       </section>
+	  
+	  <section className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-3xl mb-12">
+      <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">
+        Spécialités
+      </div>
+
+      <h2 className="text-4xl font-semibold tracking-tight text-slate-900">
+        Une équipe pluriprofessionnelle réunie en un même lieu
+      </h2>
+
+      <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+        La MSP Aéromed regroupe plusieurs disciplines complémentaires pour faciliter
+        l’orientation, le suivi et la coordination des soins.
+      </p>
+    </div>
+
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        { icon: "🩺", name: "Médecine générale", text: "Suivi médical, prévention, soins courants et coordination du parcours." },
+        { icon: "🌸", name: "Gynécologie", text: "Suivi gynécologique, prévention, contraception et accompagnement." },
+        { icon: "❤️", name: "Cardiologie", text: "Évaluation, suivi et prévention des pathologies cardiovasculaires." },
+        { icon: "👁️", name: "Ophtalmologie", text: "Bilan visuel, dépistage et suivi des pathologies oculaires." },
+        { icon: "🦷", name: "Dentiste", text: "Soins dentaires, prévention bucco-dentaire et accompagnement du sourire." },
+		{ icon: "😁", name: "Prothésiste dentaire", text: "Conception et réalisation de dispositifs prothétiques sur mesure en lien avec les soins dentaires.",},
+        { icon: "🦵", name: "Kinésithérapie", text: "Rééducation, récupération fonctionnelle et accompagnement du mouvement." },
+        { icon: "🦶", name: "Podologie", text: "Soins du pied, bilans podologiques et prévention des troubles d’appui." },
+        { icon: "🥗", name: "Diététique", text: "Accompagnement nutritionnel personnalisé et conseils alimentaires." },
+        { icon: "🧩", name: "Psychomotricité", text: "Accompagnement du développement, du mouvement et des fonctions psychocorporelles." },
+      ].map((specialty) => (
+        <div
+          key={specialty.name}
+          className="group relative overflow-hidden rounded-[30px] bg-[#F8FAF9] border border-slate-100 p-7 shadow-sm hover:bg-white hover:shadow-xl transition duration-300"
+        >
+          <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-gradient-to-br from-[#B6D2BE]/40 to-[#88AFCF]/30 blur-2xl group-hover:scale-125 transition duration-500" />
+
+          <div className="relative">
+            <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">
+              {specialty.icon}
+            </div>
+
+            <h3 className="text-xl font-semibold text-slate-900">
+              {specialty.name}
+            </h3>
+
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              {specialty.text}
+            </p>
+
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 	  
 	  <ConsultationGuide />
 
@@ -202,22 +280,7 @@ export default function Page() {
         </div>
       </section>
 
-      <footer id="contact" className="border-t border-slate-100 bg-white py-12">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          <div>
-            <div className="font-semibold text-lg">MSP Aéromed</div>
-            <div className="text-slate-500 mt-1 text-sm">Toulouse • Saint-Martin-du-Touch</div>
-          </div>
-          <div>
-            <div className="font-semibold text-slate-900">Secrétariat MSP</div>
-            <div className="text-slate-500 mt-2 text-sm">Téléphone : 05 XX XX XX XX</div>
-            <div className="text-slate-500 mt-1 text-sm">Adresse : 2 rue Jean Séguéla, 31300 Toulouse</div>
-          </div>
-          <div className="text-sm text-slate-500 md:text-right">
-            © 2026 Aéromed<br />Maison de Santé Pluriprofessionnelle
-          </div>
-        </div>
-      </footer>
+     <Footer />
     </div>
   );
 }

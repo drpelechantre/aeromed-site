@@ -48,6 +48,8 @@ export const teamMembers = [
   gender: "male",
   icon: "😴",
   image: "/equipe/pel.png",
+  doctolib: "https://www.doctolib.fr/medecin-generaliste/colomiers/pierre-etienne-lechantre-colomiers",
+  linkedin: "https://www.linkedin.com/in/pelechantre/",
 
   description:
     "Médecin généraliste exerçant au sein de la MSP Aéromed, avec une activité particulière autour du dépistage des troubles respiratoires du sommeil.",

@@ -1,5 +1,6 @@
 import { teamMembers } from "../../data/teamMembers";
-
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaCalendarCheck } from "react-icons/fa";
 export default async function MemberPage({
   params,
 }: {
@@ -56,19 +57,36 @@ export default async function MemberPage({
       <section className="px-6 py-24 bg-gradient-to-br from-[#E8F1EB] via-white to-[#E8EEF6]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[320px_1fr] gap-12 items-start">
           <div className="bg-white/80 backdrop-blur rounded-[36px] p-8 border border-white shadow-xl">
-            <div className="relative w-48 h-48 mx-auto rounded-[36px] bg-gradient-to-br from-[#DCE8DF] to-[#DCE5EF] flex items-center justify-center overflow-hidden shadow-inner">
-              {member.image ? (
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="text-7xl">
-                  {member.gender === "female" ? "👩" : "👨"}
-                </div>
-              )}
-            </div>
+           <div className="relative w-fit mx-auto">
+  <img
+    src={member.image}
+    alt={member.name}
+    className="w-40 h-40 rounded-3xl object-cover"
+  />
+
+  <a
+    href={member.linkedin}
+    target="_blank"
+    rel="noreferrer"
+    className="absolute -top-2 -right-2 w-10 h-10 rounded-xl bg-white/90 backdrop-blur shadow-lg border border-white flex items-center justify-center text-slate-700 hover:bg-[#0A66C2] hover:text-white hover:scale-110 transition duration-300"
+  >
+    <FaLinkedinIn size={16} />
+  </a>
+</div>
+
+<div className="mt-6 flex items-center justify-center gap-3">
+
+<a
+  href={member.doctolib}
+  target="_blank"
+  rel="noreferrer"
+  className="mt-6 inline-flex items-center gap-2 bg-[#0596DE] text-white px-4 py-2 rounded-2xl hover:bg-[#0484C7] transition shadow-md text-sm font-medium"
+>
+  <FaCalendarCheck size={14} />
+  Prendre rendez-vous
+</a>
+</div>
+
 
             <div className="mt-6 text-center">
               <div className="text-3xl mb-3">{member.icon}</div>
