@@ -1,3 +1,4 @@
+import ConsultationGuide from "./components/ConsultationGuide";
 export default function Page() {
   const specialties = [
     {
@@ -21,6 +22,10 @@ export default function Page() {
       name: 'Dentiste',
       doctolibUrl: '#',
     },
+	 {
+      name: 'Prothésiste dentaire',
+      doctolibUrl: '#',
+    },
     {
       name: 'Kinésithérapie',
       doctolibUrl: '#',
@@ -37,40 +42,13 @@ export default function Page() {
       name: 'Psychomotricité',
       doctolibUrl: '#',
     },
+	  {
+      name: 'Médecine du sport',
+      doctolibUrl: '#',
+    },
   ];
 
-  const teamMembers = [
-    {
-      name: 'Dr Anne BOUCAULT',
-      role: 'Médecine générale',
-      gender: 'female',
-    },
-    {
-      name: 'Mme Clémence CHAPUIS',
-      role: 'Médecine générale',
-      gender: 'female',
-    },
-    {
-      name: 'Dr Simon MATHE',
-      role: 'Médecine générale',
-      gender: 'male',
-    },
-    {
-      name: 'Dr Pierre-Etienne LECHANTRE',
-      role: 'Médecine générale',
-      gender: 'male',
-    },
-    {
-      name: 'Dr Valérie MULLER',
-      role: 'Médecine générale',
-      gender: 'female',
-    },
-    {
-      name: 'Dr Nathalie FAVRE',
-      role: 'Gynécologie',
-      gender: 'female',
-    },
-  ];
+
 
   const projects = [
     {
@@ -108,9 +86,9 @@ export default function Page() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-7 text-sm text-slate-600">
-            <a href="#rdv" className="hover:text-slate-900 transition">Rendez-vous</a>
-            <a href="#equipe" className="hover:text-slate-900 transition">Équipe</a>
-            <a href="#projets" className="hover:text-slate-900 transition">Projets</a>
+            <a href="/rendez-vous/" className="hover:text-slate-900 transition">Rendez-vous</a>
+            <a href="/equipe/" className="hover:text-slate-900 transition">Équipe</a>
+            <a href="/projets/" className="hover:text-slate-900 transition">Projets</a>
             <a href="#recherche" className="hover:text-slate-900 transition">Recherche</a>
             <a href="#recrutement" className="hover:text-slate-900 transition">Recrutement</a>
             <a href="#contact" className="hover:text-slate-900 transition">Contact</a>
@@ -159,105 +137,8 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      <section id="rdv" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl mb-12">
-            <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">Rendez-vous</div>
-            <h2 className="text-4xl font-semibold tracking-tight text-slate-900">Choisir une spécialité</h2>
-            <p className="mt-5 text-lg text-slate-600 leading-relaxed">
-              Retrouvez ici les liens vers les agendas Doctolib des différents professionnels de la Maison de Santé Aéromed.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {specialties.map((specialty) => (
-              <a
-                key={specialty.name}
-                href={specialty.doctolibUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group bg-[#F8FAF9] rounded-[26px] p-6 border border-slate-100 hover:bg-white hover:shadow-lg transition"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-lg font-semibold text-slate-900">{specialty.name}</div>
-                    <div className="mt-2 text-sm text-slate-500">Voir les disponibilités sur Doctolib</div>
-                  </div>
-                  <div className="shrink-0 rounded-xl bg-[#0596DE] px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
-                    Doctolib
-                  </div>
-                </div>
-                <div className="mt-5 text-sm font-medium text-[#5D89AD] group-hover:translate-x-1 transition">Accéder à l’agenda →</div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="equipe" className="py-24 bg-gradient-to-b from-white to-[#F4F7F6]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14">
-            <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">
-              Équipe pluridisciplinaire
-            </div>
-            <h2 className="text-4xl font-semibold tracking-tight text-slate-900">
-              Une équipe coordonnée autour du patient
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {teamMembers.map((member) => (
-              <div
-                key={member.name}
-                className="bg-white rounded-[30px] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition duration-300"
-              >
-                <div className="flex items-center gap-5">
-                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#DCE8DF] to-[#DCE5EF] flex items-center justify-center shadow-inner text-3xl">
-                    {member.gender === 'female' ? '👩‍⚕️' : '👨‍⚕️'}
-                  </div>
-
-                  <div>
-                    <div className="text-xl font-semibold text-slate-900 leading-tight">
-                      {member.name}
-                    </div>
-                    <div className="mt-2 text-sm text-[#5D89AD] font-medium">
-                      {member.role}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-500 leading-relaxed">
-                  Exerce au sein de la MSP Aéromed dans une dynamique de soins coordonnés et de collaboration pluriprofessionnelle.
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="projets" className="py-24">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-start">
-          <div>
-            <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">Projet de santé</div>
-            <h2 className="text-4xl font-semibold tracking-tight text-slate-900 leading-tight">Une maison de santé tournée vers le territoire.</h2>
-            <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-              La MSP Aéromed développe des projets pluriprofessionnels en lien avec les besoins des patients, les acteurs locaux et la CPTS Toulouse Ouest.
-            </p>
-            <a href="#" className="inline-flex mt-8 bg-white text-[#5D89AD] border border-slate-200 px-6 py-3 rounded-2xl hover:shadow-md transition">
-              Découvrir la CPTS Toulouse Ouest →
-            </a>
-          </div>
-          <div className="grid gap-5">
-            {projects.map((project) => (
-              <div key={project.title} className="bg-white rounded-[28px] p-7 border border-slate-100 shadow-sm">
-                <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
-                <p className="mt-3 text-slate-600 leading-relaxed">{project.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+	  
+	  <ConsultationGuide />
 
       <section id="recherche" className="py-24 bg-[#F4F7F6]">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10">
@@ -293,9 +174,15 @@ export default function Page() {
               <div>• Coordination interprofessionnelle</div>
             </div>
           </div>
-          <div className="h-[420px] rounded-[36px] bg-gradient-to-br from-[#DDEAE0] to-[#DDE6F2] shadow-inner border border-white flex items-center justify-center text-slate-500 text-lg">
-            Carte / Photo de la MSP
-          </div>
+          <div className="h-[420px] rounded-[36px] overflow-hidden shadow-xl border border-white bg-white">
+  <iframe
+    title="Carte MSP Aéromed"
+    src="https://www.google.com/maps?q=2%20rue%20Jean%20S%C3%A9gu%C3%A9la%2031300%20Toulouse&output=embed"
+    className="w-full h-full border-0"
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</div>
         </div>
       </section>
 
@@ -324,7 +211,7 @@ export default function Page() {
           <div>
             <div className="font-semibold text-slate-900">Secrétariat MSP</div>
             <div className="text-slate-500 mt-2 text-sm">Téléphone : 05 XX XX XX XX</div>
-            <div className="text-slate-500 mt-1 text-sm">Adresse : à compléter</div>
+            <div className="text-slate-500 mt-1 text-sm">Adresse : 2 rue Jean Séguéla, 31300 Toulouse</div>
           </div>
           <div className="text-sm text-slate-500 md:text-right">
             © 2026 Aéromed<br />Maison de Santé Pluriprofessionnelle
