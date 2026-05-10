@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { teamMembers } from "../data/teamMembers";
-import { Linkedin, Mail, Globe } from "lucide-react";
 export default function EquipePage() {
   return (
     <main className="min-h-screen bg-[#F8FAF9] text-slate-800">
