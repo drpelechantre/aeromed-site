@@ -1,0 +1,234 @@
+Oui, c’est une **très bonne architecture**. Et surtout : elle est cohérente avec une vraie MSP, pas juste un site “plaquette”.
+
+Je structurerais le CMS autour de **8 types de contenus**.
+
+## Architecture CMS proposée
+
+```txt
+1. Page d’accueil
+2. Groupes de spécialités
+3. Professionnels
+4. Projets / Actualités
+5. Protocoles MSP
+6. Partenaires
+7. Recrutement
+8. Annonces
+```
+
+## Menu principal conseillé
+
+```txt
+Accueil
+Équipe
+Projets & actualités
+Partenaires
+Pédagogie & recherche
+Recrutement
+Annonces
+Contact
+```
+
+Je garderais **Contact** dans le menu, même si tu ne l’as pas listé, parce que c’est indispensable pour un site public.
+
+## Ce que je modifierais légèrement
+
+### 1. Ne pas mélanger “Projets” et “Protocoles”
+
+Je ferais deux types séparés :
+
+```txt
+Projet / Actualité
+Protocole MSP
+```
+
+Parce qu’un projet est daté, évolutif, parfois terminé.
+Un protocole est plus stable : obésité, insuffisance cardiaque, saignements de la femme, etc.
+
+Sur la page “Projets & actualités”, on pourra afficher :
+
+* les actualités récentes ;
+* les projets en cours ;
+* un encart “Protocoles actifs de la MSP”.
+
+### 2. Faire des “groupes de spécialités” indépendants des professionnels
+
+Très bonne idée.
+
+Exemple :
+
+```txt
+Cardiologie
+Médecine générale
+Gynécologie
+Ophtalmologie
+Dentaire
+Kinésithérapie
+Podologie
+Diététique
+Psychomotricité
+```
+
+Chaque groupe aura :
+
+* nom ;
+* description courte ;
+* icône ;
+* lien agenda de groupe ;
+* ordre d’affichage ;
+* actif/inactif.
+
+Puis chaque professionnel sera rattaché à un ou plusieurs groupes.
+
+### 3. Ne pas créer une page “Actualités” et une page “Annonces” trop proches
+
+Il faut bien distinguer :
+
+**Actualités / projets** = contenu institutionnel de la MSP.
+Exemple : nouveau protocole, action prévention, projet CPTS, recherche, Octobre Rose.
+
+**Annonces** = informations pratiques rapides.
+Exemple : fermeture exceptionnelle, arrivée d’un professionnel, changement d’horaires, absence secrétariat.
+
+Donc oui, les deux peuvent exister, mais il faut leur donner des rôles différents.
+
+## Structure des pages
+
+### Page d’accueil
+
+Elle va récupérer :
+
+* présentation générale ;
+* photos principales ;
+* plan d’accès ;
+* groupes de spécialités ;
+* derniers projets à la une ;
+* recrutements en cours ;
+* annonces importantes.
+
+Ça remplace progressivement le contenu codé en dur actuel, qui contient déjà spécialités, projets, RDV et accès directement dans `page.tsx` .
+
+### Équipe
+
+Structure idéale :
+
+```txt
+1. Introduction
+2. Groupes de spécialités
+3. Trombinoscope des professionnels
+4. Étudiants / stagiaires
+```
+
+Chaque professionnel :
+
+* photo ;
+* nom ;
+* métier ;
+* spécialité ;
+* présentation courte ;
+* lien Doctolib individuel ;
+* CV optionnel ;
+* visible ou non ;
+* ordre d’affichage.
+
+### Projets & actualités
+
+Un type unique `post`, avec une catégorie :
+
+```txt
+Actualité
+Projet
+Prévention
+Recherche
+Vie de la MSP
+```
+
+Champs :
+
+* titre ;
+* résumé ;
+* image ;
+* date de publication ;
+* date de l’événement/projet ;
+* contenu détaillé ;
+* catégorie ;
+* à la une ;
+* visible.
+
+### Protocoles MSP
+
+Type séparé :
+
+```txt
+Obésité
+Insuffisance cardiaque
+Saignements de la femme
+SAOS
+Diabète
+```
+
+Champs :
+
+* titre ;
+* résumé ;
+* professionnels référents ;
+* statut actif/inactif ;
+* contenu détaillé ;
+* documents éventuels.
+
+### Partenaires
+
+Très simple :
+
+* nom ;
+* type ;
+* logo ;
+* description ;
+* lien ;
+* ordre.
+
+### Recrutement
+
+* titre du poste ;
+* résumé ;
+* profession recherchée ;
+* statut ouvert/fermé ;
+* date de publication ;
+* détail ;
+* contact ;
+* fichier PDF éventuel.
+
+### Pédagogie & recherche
+
+Je ferais une **page éditable**, plus des projets de recherche reliés.
+
+Contenu :
+
+* présentation générale ;
+* accueil étudiants ;
+* MSU ;
+* recherche en soins primaires ;
+* projets en cours ;
+* publications éventuelles.
+
+### Annonces
+
+* titre ;
+* message court ;
+* date début ;
+* date fin ;
+* niveau : info / important / urgent ;
+* visible sur accueil ou non.
+
+## Mon avis net
+
+Ton idée est bonne. Je la simplifierais juste en séparant bien :
+
+```txt
+Actualités/projets = contenu vivant
+Protocoles = contenu structurant
+Annonces = infos pratiques courtes
+Recrutement = offres
+Pédagogie/recherche = page institutionnelle + projets liés
+```
+
+Prochaine étape logique : on crée dans Sanity le deuxième type de contenu, **Groupe de spécialités**, parce qu’il servira à la fois à l’accueil, à l’équipe et aux rendez-vous.

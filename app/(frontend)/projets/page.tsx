@@ -103,6 +103,13 @@ export default function ProjetsPage() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10">
           <div className="bg-[#F8FAF9] rounded-[36px] p-10 border border-slate-100 shadow-sm">
             <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">
+			<div className="absolute top-5 right-5 w-10 h-10 rounded-2xl bg-white/60 backdrop-blur flex items-center justify-center border border-white/50">
+  <img
+    src="/logo-aeromed.jpg"
+    alt=""
+    className="w-5 h-5 object-contain opacity-70"
+  />
+</div>
               Recherche
             </div>
 
@@ -119,6 +126,13 @@ export default function ProjetsPage() {
 
           <div className="bg-[#F8FAF9] rounded-[36px] p-10 border border-slate-100 shadow-sm">
             <div className="text-sm uppercase tracking-[0.25em] text-slate-400 mb-4">
+			<div className="absolute top-5 right-5 w-10 h-10 rounded-2xl bg-white/60 backdrop-blur flex items-center justify-center border border-white/50">
+  <img
+    src="/logo-aeromed.jpg"
+    alt=""
+    className="w-5 h-5 object-contain opacity-90"
+  />
+</div>
               Pédagogie
             </div>
 
