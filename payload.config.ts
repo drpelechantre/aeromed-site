@@ -1,5 +1,6 @@
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { SiteSettings } from './globals/SiteSettings'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
@@ -134,6 +135,10 @@ export default buildConfig({
       ],
     },
   ],
+  
+  
+  globals: [SiteSettings],
+  
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,

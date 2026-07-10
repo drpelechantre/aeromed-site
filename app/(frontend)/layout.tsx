@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "@/components/layout/Header";
+import { getSiteSettings } from "@/lib/getSiteSettings";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,22 +14,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "MSP Aéromed | Toulouse Saint-Martin-du-Touch",
   description:
     "Maison de Santé Pluriprofessionnelle Aéromed à Toulouse Saint-Martin-du-Touch.",
 };
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header settings={settings} />
+        {children}
+      </body>
     </html>
   );
 }

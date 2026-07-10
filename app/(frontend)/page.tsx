@@ -1,5 +1,4 @@
 import ConsultationGuide from "./components/ConsultationGuide";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 export default function Page() {
   const specialties = [
@@ -73,7 +72,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-[#F8FAF9] text-slate-800 font-sans">
-      <Header />
+
 
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#E8F1EB] via-white to-[#E8EEF6]" />
