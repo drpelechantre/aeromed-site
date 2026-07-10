@@ -4,6 +4,8 @@ import Header from "@/components/layout/Header";
 import { getSiteSettings } from "@/lib/getSiteSettings";
 import "./globals.css";
 
+export const dynamic = 'force-dynamic'
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
