@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { getSiteSettings } from "@/lib/getSiteSettings";
 import "./globals.css";
 
@@ -26,7 +27,8 @@ export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) 
+{
   const settings = await getSiteSettings();
 
   return (
@@ -34,10 +36,17 @@ export default async function RootLayout({
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Header settings={settings} />
-        {children}
-      </body>
+ <body className="min-h-full flex flex-col">
+ 
+
+  <Header settings={settings} />
+
+  <main className="flex-1">
+    {children}
+  </main>
+
+  <Footer settings={settings} />
+</body>
     </html>
   );
 }
