@@ -180,7 +180,7 @@ export const Professionals: CollectionConfig = {
       name: 'photo',
       label: 'Photo',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: 'media' as any,
     },
 
     {

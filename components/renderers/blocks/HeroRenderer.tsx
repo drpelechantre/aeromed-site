@@ -17,17 +17,9 @@ export default function HeroRenderer({
 }: HeroRendererProps) {
   return (
     <HeroPage
-      badge={block.eyebrow || undefined}
+      badge={block.eyebrow || ''}
       title={block.title || ''}
-      description={block.description || undefined}
-      primaryButton={
-        block.buttonLabel
-          ? {
-              label: block.buttonLabel,
-              href: block.buttonUrl || '#',
-            }
-          : undefined
-      }
+      description={block.description || ''}
     />
   )
 }

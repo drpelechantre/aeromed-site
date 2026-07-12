@@ -6,7 +6,6 @@ import SectionTitleRenderer from "./blocks/SectionTitleRenderer";
 import CTARenderer from "./blocks/CTARenderer";
 import RichTextRenderer from './blocks/RichTextRenderer'
 import HeroImageRenderer from './blocks/HeroImageRenderer'
-import CardsBlock from './blocks/CardsBlock'
 import CardsRenderer from "./blocks/CardsRenderer";
 import FeaturesRenderer from "./blocks/FeaturesRenderer";
 import StatsRenderer from "./blocks/StatsRenderer";
@@ -28,14 +27,7 @@ type PageRendererProps = {
   blocks?: Block[] | null;
 };
 
-type BlockRendererProps = {
-  block: Block;
-};
-
-const renderers: Record<
-  string,
-  ComponentType<BlockRendererProps>
-> = {
+const renderers: Record<string, ComponentType<any>> = {
   hero: HeroRenderer,
   heroImage: HeroImageRenderer,
   professionals: ProfessionalsRenderer,

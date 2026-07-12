@@ -45,7 +45,7 @@ export const DownloadBlock: Block = {
         {
           name: "file",
           type: "upload",
-          relationTo: "media",
+          relationTo: "media" as any,
           label: "Fichier",
           required: true,
         },

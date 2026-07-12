@@ -35,7 +35,7 @@ export const PartnersBlock: Block = {
         {
           name: "logo",
           type: "upload",
-          relationTo: "media",
+          relationTo: "media" as any,
           label: "Logo",
         },
         {

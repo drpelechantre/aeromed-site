@@ -45,7 +45,7 @@ export const ArticlesBlock: Block = {
         {
           name: "image",
           type: "upload",
-          relationTo: "media",
+          relationTo: "media" as any,
           label: "Image",
         },
         {

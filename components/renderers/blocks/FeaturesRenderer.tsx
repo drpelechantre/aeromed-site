@@ -1,4 +1,6 @@
-import type { BlockRendererProps } from "../PageRenderer";
+type BlockRendererProps = {
+  block: any;
+};;
 
 export default function FeaturesRenderer({
   block,

@@ -35,7 +35,7 @@ export const GalleryBlock: Block = {
         {
           name: "image",
           type: "upload",
-          relationTo: "media",
+          relationTo: "media" as any,
           label: "Image",
           required: true,
         },

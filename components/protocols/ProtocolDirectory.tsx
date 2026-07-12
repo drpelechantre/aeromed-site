@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import SectionTitle from '@/components/sections/SectionTitle'
-import ProtocolGrid from './ProtocolGrid'
+import ProtocolGrid from '@/components/protocols/ProtocolGrid'
 
 type Protocol = {
   id?: string | number

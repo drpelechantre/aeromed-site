@@ -1,5 +1,5 @@
 import SectionTitle from '@/components/sections/SectionTitle'
-import SpecialtyCard from '@/components/specialties/SpecialtyCard'
+import SpecialtyCard from '@/components/specialities/SpecialityCard'
 
 type Specialty = {
   id?: string | number

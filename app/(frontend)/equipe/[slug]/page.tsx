@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-
+import PageRenderer from '@/components/renderers/PageRenderer'
 type PageProps = {
   params: Promise<{
     slug: string;
@@ -73,9 +73,25 @@ export default async function ProfessionalPage({
     depth: 2,
   });
 
-  const professional = result.docs[0];
-  console.log("PROFESSIONNEL COMPLET :", professional);
+const professional = result.docs[0] as typeof result.docs[0] & {
+  fullDescription?: string | null
+  shortBio?: string | null
+  cv?: string | null
 
+  photo?:
+    | number
+    | {
+        alt?: string | null
+        url?: string | null
+        sizes?: {
+          card?: {
+            url?: string | null
+          } | null
+        } | null
+      }
+    | null
+};
+  
   if (!professional) {
     notFound();
   }
