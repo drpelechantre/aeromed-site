@@ -18,7 +18,7 @@ export default async function DynamicPage({ params }: PageProps) {
   })
 
   const result = await payload.find({
-    collection: 'pages',
+    collection: 'pages' as any,
     where: {
       slug: {
         equals: slug,
