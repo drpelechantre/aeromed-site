@@ -68,8 +68,12 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    pages: Page;
+    media: Media;
     professionals: Professional;
     specialties: Specialty;
+    articles: Article;
+    'article-categories': ArticleCategory;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,8 +82,12 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     professionals: ProfessionalsSelect<false> | ProfessionalsSelect<true>;
     specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -150,11 +158,365 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  slug: string;
+  layout?:
+    | (
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            description?: string | null;
+            stats: {
+              /**
+               * Exemple : 9, 20+, 100 %, 2026
+               */
+              value: string;
+              /**
+               * Exemple : spécialités présentes
+               */
+              label: string;
+              description?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            features?:
+              | {
+                  icon?: string | null;
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            limit?: number | null;
+            category?: (number | null) | ArticleCategory;
+            featuredOnly?: boolean | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'articles';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            address: string;
+            /**
+             * Colle ici l’adresse src de l’iframe Google Maps ou OpenStreetMap.
+             */
+            mapUrl: string;
+            /**
+             * Lien Google Maps ou autre service d’itinéraire.
+             */
+            directionsUrl?: string | null;
+            directionsLabel?: string | null;
+            features?:
+              | {
+                  /**
+                   * Exemples : ♿, 🚗, 🚌, 🚲
+                   */
+                  icon?: string | null;
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'map';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            partners: {
+              logo?: (number | null) | Media;
+              name: string;
+              description?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'partners';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            documents: {
+              file: number | Media;
+              title: string;
+              description?: string | null;
+              buttonLabel?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'download';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            images: {
+              image: number | Media;
+              /**
+               * Décris brièvement l’image pour l’accessibilité et le référencement.
+               */
+              alt: string;
+              caption?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            items: {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            /**
+             * Exemple : /images/equipe.jpg
+             */
+            imageUrl: string;
+            primaryLabel?: string | null;
+            primaryHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroImage';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            alignment?: ('left' | 'center') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'sectionTitle';
+          }
+        | {
+            /**
+             * Affiche le grand bandeau de présentation avec le nombre de professionnels et de spécialités.
+             */
+            showHero?: boolean | null;
+            /**
+             * Ajoute une grande section premium sous les professionnels pour présenter la coordination de l’équipe.
+             */
+            showPhilosophy?: boolean | null;
+            title?: string | null;
+            description?: string | null;
+            specialty?: (number | null) | Specialty;
+            limit?: number | null;
+            showDoctolib?: boolean | null;
+            showAllButton?: boolean | null;
+            showAllButtonLabel?: string | null;
+            showAllButtonUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'professionals';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            buttonLabel?: string | null;
+            buttonHref?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta';
+          }
+        | {
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            width?: ('narrow' | 'normal' | 'wide') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | {
+            /**
+             * Petit texte affiché au-dessus du titre principal, par exemple « Projet de santé ».
+             */
+            eyebrow?: string | null;
+            title: string;
+            description?: string | null;
+            columns?: ('2' | '3' | '4') | null;
+            style?: ('default' | 'soft' | 'glass') | null;
+            cards: {
+              /**
+               * Tu peux mettre un emoji, par exemple 🩺, ❤️, 📚 ou 🔬.
+               */
+              icon?: string | null;
+              title: string;
+              description: string;
+              /**
+               * Par exemple « En savoir plus ». Laisse vide pour ne pas afficher de lien.
+               */
+              buttonLabel?: string | null;
+              /**
+               * Par exemple /projets, /equipe ou une adresse externe.
+               */
+              buttonHref?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cards';
+          }
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string | null;
+  /**
+   * Emoji ou symbole affiché avec la catégorie (ex : 🩺 🎓 🔬)
+   */
+  icon?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  caption?: string | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties".
+ */
+export interface Specialty {
+  id: number;
+  name: string;
+  description?: string | null;
+  doctolibUrl?: string | null;
+  logo?: (number | null) | Media;
+  visible?: boolean | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "professionals".
  */
 export interface Professional {
   id: number;
-  fullName: string;
+  title?: ('Dr' | 'Pr' | 'M.' | 'Mme') | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Généré automatiquement à partir du titre, prénom et nom.
+   */
+  fullName?: string | null;
+  /**
+   * Adresse automatique de la fiche professionnelle.
+   */
+  slug: string;
   profession:
     | 'medecin-generaliste'
     | 'gynecologue'
@@ -182,8 +544,10 @@ export interface Professional {
         | 'handshake'
       )
     | null;
+  photo?: (number | null) | Media;
   specialty?: (number | null) | Specialty;
   shortBio?: string | null;
+  fullDescription?: string | null;
   rpps?: string | null;
   cv?: string | null;
   doctolibUrl?: string | null;
@@ -196,15 +560,45 @@ export interface Professional {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "specialties".
+ * via the `definition` "articles".
  */
-export interface Specialty {
+export interface Article {
   id: number;
-  name: string;
-  description?: string | null;
-  doctolibUrl?: string | null;
-  visible?: boolean | null;
-  order?: number | null;
+  title: string;
+  slug: string;
+  excerpt?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  image?: (number | null) | Media;
+  categories?: (number | ArticleCategory)[] | null;
+  author?: (number | null) | Professional;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  audience?: ('patients' | 'professionnels' | 'etudiants' | 'partenaires')[] | null;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+  };
+  publishedAt?: string | null;
+  status?: ('draft' | 'published' | 'archived') | null;
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -237,12 +631,28 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
         relationTo: 'professionals';
         value: number | Professional;
       } | null)
     | ({
         relationTo: 'specialties';
         value: number | Specialty;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'article-categories';
+        value: number | ArticleCategory;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -310,14 +720,313 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        stats?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        articles?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              limit?: T;
+              category?: T;
+              featuredOnly?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        map?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              address?: T;
+              mapUrl?: T;
+              directionsUrl?: T;
+              directionsLabel?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        partners?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              partners?:
+                | T
+                | {
+                    logo?: T;
+                    name?: T;
+                    description?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        download?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              documents?:
+                | T
+                | {
+                    file?: T;
+                    title?: T;
+                    description?: T;
+                    buttonLabel?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    alt?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroImage?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              imageUrl?: T;
+              primaryLabel?: T;
+              primaryHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sectionTitle?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              alignment?: T;
+              id?: T;
+              blockName?: T;
+            };
+        professionals?:
+          | T
+          | {
+              showHero?: T;
+              showPhilosophy?: T;
+              title?: T;
+              description?: T;
+              specialty?: T;
+              limit?: T;
+              showDoctolib?: T;
+              showAllButton?: T;
+              showAllButtonLabel?: T;
+              showAllButtonUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              buttonLabel?: T;
+              buttonHref?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richText?:
+          | T
+          | {
+              content?: T;
+              width?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cards?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              columns?: T;
+              style?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    buttonLabel?: T;
+                    buttonHref?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  caption?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        hero?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "professionals_select".
  */
 export interface ProfessionalsSelect<T extends boolean = true> {
+  title?: T;
+  firstName?: T;
+  lastName?: T;
   fullName?: T;
+  slug?: T;
   profession?: T;
   emoji?: T;
+  photo?: T;
   specialty?: T;
   shortBio?: T;
+  fullDescription?: T;
   rpps?: T;
   cv?: T;
   doctolibUrl?: T;
@@ -336,8 +1045,52 @@ export interface SpecialtiesSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   doctolibUrl?: T;
+  logo?: T;
   visible?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  image?: T;
+  categories?: T;
+  author?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  audience?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  publishedAt?: T;
+  status?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories_select".
+ */
+export interface ArticleCategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  icon?: T;
   updatedAt?: T;
   createdAt?: T;
 }

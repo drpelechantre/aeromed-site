@@ -2,13 +2,14 @@
   "name": "aeromed-site",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
    "build": "next build",
     "start": "next start",
     "payload": "payload",
     "generate:importmap": "payload generate:importmap",
-    "generate:types": "payload generate:types"
+     "generate:types": "payload generate:types --config ./payload.config.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.2",

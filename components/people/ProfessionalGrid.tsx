@@ -12,6 +12,7 @@ type Professional = {
   name: string
   profession: string
   specialty?: string
+  specialtyLogo?: string;
   description?: string
   photo?: string
   badge?: string

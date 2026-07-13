@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import type { Metadata } from "next";
 import { getSiteSettings } from "@/lib/getSiteSettings";
 
 export const dynamic = 'force-dynamic'
