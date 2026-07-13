@@ -76,6 +76,7 @@ export default async function ProfessionalPage({
     title?: string | null;
     firstName?: string | null;
     lastName?: string | null;
+	phone?: string | null;
 
     fullDescription?: string | null;
     shortBio?: string | null;
@@ -249,6 +250,15 @@ export default async function ProfessionalPage({
                   Envoyer un email
                 </a>
               )}
+			  
+			  {professional.phone && (
+  <a
+    href={`tel:${professional.phone}`}
+    className="rounded-2xl border border-white bg-white px-6 py-3.5 text-sm font-medium text-slate-700 shadow-sm"
+  >
+    📞 {professional.phone}
+  </a>
+)}
 
             </div>
 
@@ -350,6 +360,21 @@ export default async function ProfessionalPage({
                   </div>
                 </div>
               )}
+			  
+			  {professional.phone && (
+  <div>
+    <div className="text-xs uppercase text-slate-400">
+      Téléphone
+    </div>
+
+    <a
+      href={`tel:${professional.phone}`}
+      className="mt-1 block font-medium text-[#5d89ad] hover:underline"
+    >
+      {professional.phone}
+    </a>
+  </div>
+)}
 
 
             </div>
