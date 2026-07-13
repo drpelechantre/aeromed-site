@@ -42,21 +42,20 @@ export default function Header({ settings }: HeaderProps) {
   const ctaUrl = settings?.ctaUrl || '/rendez-vous'
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <img
-            src="/logo-aeromed.jpg"
-            alt={`Logo ${siteName}`}
-            className="h-12 w-12 object-contain"
-          />
-
+    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+        <Link href="/" className="flex items-center gap-4">
+         <img
+  src="/logo-aeromed.png"
+  alt="Logo Aéromed"
+  className="w-20 h-20 object-contain transition-transform duration-300 hover:scale-105"
+/>
           <div>
-            <div className="text-lg font-semibold tracking-tight">
+            <div className="text-lg font-semibold tracking-tight text-slate-900">
               {siteName}
             </div>
 
-            <div className="-mt-1 text-xs text-slate-500">
+            <div className="-mt-1 text-sm text-slate-500">
               {subtitle}
             </div>
           </div>
