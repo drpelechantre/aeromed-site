@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-   "build": "next build",
+    "build": "next build",
     "start": "next start",
     "payload": "payload",
     "generate:importmap": "payload generate:importmap",
-     "generate:types": "payload generate:types --config ./payload.config.ts"
+    "generate:types": "payload generate:types --config ./payload.config.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.2",
@@ -17,6 +17,7 @@
     "@payloadcms/richtext-lexical": "^3.85.2",
     "@payloadcms/storage-vercel-blob": "^3.85.2",
     "@payloadcms/ui": "^3.85.2",
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "payload": "^3.85.2",
