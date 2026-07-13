@@ -6,6 +6,9 @@ import ProfessionalCard from "@/components/people/ProfessionalCard"
 
 type Professional = {
   id?: string | number
+  title?: string
+  firstName: string
+  lastName: string
   name: string
   profession: string
   specialty?: string
@@ -57,7 +60,10 @@ export default function ProfessionalGrid({
 
       const searchableContent = normalizeText(
         [
-          professional.name,
+            professional.title,
+    professional.firstName,
+    professional.lastName,
+    professional.name,
           professional.profession,
           professional.specialty,
           professional.description,
@@ -185,7 +191,9 @@ export default function ProfessionalGrid({
                 professional.id ??
                 `${professional.name}-${professional.profession}`
               }
-              name={professional.name}
+             title={professional.title}
+			firstName={professional.firstName}
+				lastName={professional.lastName}
               profession={professional.profession}
               specialty={professional.specialty}
               description={professional.description}

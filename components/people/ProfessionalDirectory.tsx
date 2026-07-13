@@ -7,6 +7,9 @@ import ProfessionalGrid from './ProfessionalGrid'
 
 type Professional = {
   id?: string | number
+    title?: string
+  firstName: string
+  lastName: string
   name: string
   profession: string
   professionType?: string

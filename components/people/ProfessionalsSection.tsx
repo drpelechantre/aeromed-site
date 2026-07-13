@@ -5,6 +5,9 @@ import TeamPhilosophy from "@/components/sections/TeamPhilosophy"
 
 type Professional = {
   id?: string | number
+  title?: string
+  firstName: string
+  lastName: string
   name: string
   profession: string
   specialty?: string

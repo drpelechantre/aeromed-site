@@ -34,34 +34,113 @@ export const Professionals: CollectionConfig = {
 
   defaultSort: 'order',
 
+  hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (
+          data?.title &&
+          data?.firstName &&
+          data?.lastName
+        ) {
+          data.fullName =
+            `${data.title} ${data.firstName} ${data.lastName}`
+        }
+
+        return data
+      },
+    ],
+  },
+
   fields: [
+
+    // =========================
+    // IDENTITÉ
+    // =========================
+
     {
-      name: 'fullName',
-      label: 'Nom complet',
+      name: 'title',
+      label: 'Titre',
+      type: 'select',
+      required: true,
+      options: [
+        {
+          label: 'Docteur',
+          value: 'Dr',
+        },
+        {
+          label: 'Professeur',
+          value: 'Pr',
+        },
+        {
+          label: 'Monsieur',
+          value: 'M.',
+        },
+        {
+          label: 'Madame',
+          value: 'Mme',
+        },
+      ],
+    },
+
+    {
+      name: 'firstName',
+      label: 'Prénom',
       type: 'text',
       required: true,
     },
 
     {
-  name: 'slug',
-  label: 'Adresse de la page',
-  type: 'text',
-  required: true,
-  unique: true,
-  index: true,
+      name: 'lastName',
+      label: 'Nom',
+      type: 'text',
+      required: true,
+    },
+
+    {
+      name: 'fullName',
+      label: 'Nom complet',
+      type: 'text',
+      admin: {
+        readOnly: true,
+        description:
+          'Généré automatiquement à partir du titre, prénom et nom.',
+      },
+    },
+
+
+    // =========================
+    // URL PROFIL
+    // =========================
+
+    {
+      name: 'slug',
+      label: 'Adresse de la page',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+
       admin: {
         description:
-          'Adresse automatique de la fiche, par exemple : pierre-etienne-lechantre',
+          'Adresse automatique de la fiche professionnelle.',
       },
+
       hooks: {
         beforeValidate: [
           ({ value, siblingData }) => {
+
             if (value) {
               return createSlug(String(value))
             }
 
-            if (siblingData?.fullName) {
-              return createSlug(String(siblingData.fullName))
+            if (
+              siblingData?.title &&
+              siblingData?.firstName &&
+              siblingData?.lastName
+            ) {
+              return createSlug(
+                `${siblingData.firstName}-${siblingData.lastName}`
+              )
             }
 
             return value
@@ -70,11 +149,17 @@ export const Professionals: CollectionConfig = {
       },
     },
 
+
+    // =========================
+    // PROFESSION
+    // =========================
+
     {
       name: 'profession',
       label: 'Profession',
       type: 'select',
       required: true,
+
       options: [
         {
           label: 'Médecin généraliste',
@@ -123,11 +208,17 @@ export const Professionals: CollectionConfig = {
       ],
     },
 
+
+    // =========================
+    // VISUEL
+    // =========================
+
     {
       name: 'emoji',
       label: 'Badge visuel',
       type: 'select',
       defaultValue: 'stethoscope',
+
       options: [
         {
           label: '🩺 Médecine',
@@ -176,12 +267,18 @@ export const Professionals: CollectionConfig = {
       ],
     },
 
+
     {
       name: 'photo',
       label: 'Photo',
       type: 'upload',
       relationTo: 'media' as any,
     },
+
+
+    // =========================
+    // INFORMATIONS MÉTIER
+    // =========================
 
     {
       name: 'specialty',
@@ -195,21 +292,14 @@ export const Professionals: CollectionConfig = {
       label: 'Présentation courte',
       type: 'textarea',
       maxLength: 350,
-      admin: {
-        description:
-          'Texte court affiché dans la carte du professionnel.',
-      },
     },
 
     {
       name: 'fullDescription',
       label: 'Présentation complète',
       type: 'textarea',
-      admin: {
-        description:
-          'Présentation affichée sur la fiche individuelle du professionnel.',
-      },
     },
+
 
     {
       name: 'rpps',
@@ -220,11 +310,17 @@ export const Professionals: CollectionConfig = {
       },
     },
 
+
     {
       name: 'cv',
       label: 'CV / parcours',
       type: 'textarea',
     },
+
+
+    // =========================
+    // CONTACT
+    // =========================
 
     {
       name: 'doctolibUrl',
@@ -244,24 +340,33 @@ export const Professionals: CollectionConfig = {
       type: 'text',
     },
 
+
+    // =========================
+    // AFFICHAGE
+    // =========================
+
     {
       name: 'visible',
       label: 'Visible sur le site',
       type: 'checkbox',
       defaultValue: true,
+
       admin: {
         position: 'sidebar',
       },
     },
+
 
     {
       name: 'order',
       label: 'Ordre d’affichage',
       type: 'number',
       defaultValue: 99,
+
       admin: {
         position: 'sidebar',
       },
     },
+
   ],
 }

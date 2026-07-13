@@ -56,38 +56,58 @@ export default async function ProfessionalsRenderer({ block }: Props) {
   })
 
   const professionals = result.docs.map((professional: any) => ({
-    id: professional.id,
+  id: professional.id,
 
-    name:
-      professional.name ||
-      professional.fullName ||
-      "Professionnel de santé",
+  title: professional.title || undefined,
 
-    profession: formatProfession(professional.profession),
+  firstName:
+    professional.firstName ||
+    "",
 
-    specialty: professional.specialty || undefined,
+  lastName:
+    professional.lastName ||
+    "",
 
-    description: professional.description || undefined,
+  // fallback temporaire pour anciennes fiches
+  name:
+    professional.fullName ||
+    professional.name ||
+    "Professionnel de santé",
 
-    photo:
-      typeof professional.photo === "object"
-        ? professional.photo?.url
-        : professional.photo || undefined,
+  profession: formatProfession(professional.profession),
 
-    badge: professional.badge || undefined,
+  specialty:
+    professional.specialty?.name ||
+    professional.specialty ||
+    undefined,
 
-    profileHref: professional.slug
-      ? `/equipe/${professional.slug}`
-      : undefined,
+  description:
+    professional.shortBio ||
+    professional.description ||
+    undefined,
 
-    appointmentHref:
-      block.showDoctolib === false
-        ? undefined
-        : professional.appointmentHref ||
-          professional.doctolibUrl ||
-          professional.appointmentUrl ||
-          undefined,
-  }))
+  photo:
+    typeof professional.photo === "object"
+      ? professional.photo?.url
+      : professional.photo || undefined,
+
+  badge:
+    professional.emoji ||
+    professional.badge ||
+    undefined,
+
+  profileHref: professional.slug
+    ? `/equipe/${professional.slug}`
+    : undefined,
+
+  appointmentHref:
+    block.showDoctolib === false
+      ? undefined
+      : professional.appointmentHref ||
+        professional.doctolibUrl ||
+        professional.appointmentUrl ||
+        undefined,
+}))
 
   return (
     <ProfessionalsSection

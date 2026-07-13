@@ -1,14 +1,16 @@
 import Link from "next/link"
 
 type ProfessionalCardProps = {
-  name: string
-  profession: string
-  specialty?: string
-  description?: string
-  photo?: string
-  badge?: string
-  profileHref?: string
-  appointmentHref?: string
+ title?: string;
+  firstName: string;
+  lastName: string;
+  profession: string;
+  specialty?: string;
+  description?: string;
+  photo?: string;
+  badge?: string;
+  profileHref?: string;
+  appointmentHref?: string;
   appointmentExternal?: boolean
 }
 
@@ -118,7 +120,9 @@ function getProfessionTheme(profession: string): ProfessionTheme {
 }
 
 export default function ProfessionalCard({
-  name,
+  title,
+  firstName,
+  lastName,
   profession,
   specialty,
   description,
@@ -155,7 +159,7 @@ export default function ProfessionalCard({
         {photo ? (
           <img
             src={photo}
-            alt={`Portrait de ${name}`}
+           alt={`Portrait de ${title ?? ""} ${firstName} ${lastName}`}
             className="relative z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.055]"
           />
         ) : (
@@ -194,9 +198,15 @@ export default function ProfessionalCard({
           </div>
         )}
 
-        <h3 className="text-[1.4rem] font-semibold leading-[1.2] tracking-[-0.025em] text-slate-950">
-          {name}
-        </h3>
+     <h3 className="text-xl font-semibold leading-tight text-slate-900">
+  <span className="block">
+    {title} {firstName}
+  </span>
+
+  <span className="block">
+    {lastName}
+  </span>
+</h3>
 
         <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
 
