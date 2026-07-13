@@ -38,6 +38,24 @@ function formatProfession(value?: string | null) {
   return value ? labels[value] ?? value : ""
 }
 
+function formatEmoji(value?: string | null) {
+  const emojis: Record<string, string> = {
+    stethoscope: "🩺",
+    flower: "🌸",
+    heart: "❤️",
+    eye: "👁️",
+    tooth: "🦷",
+    leg: "🦵",
+    foot: "👣",
+    salad: "🥗",
+    brain: "🧠",
+    sleep: "😴",
+    handshake: "🤝",
+  }
+
+  return value ? emojis[value] ?? "🩺" : "🩺"
+}
+
 export default async function ProfessionalsRenderer({ block }: Props) {
   const payload = await getPayload({ config })
 
@@ -91,10 +109,9 @@ export default async function ProfessionalsRenderer({ block }: Props) {
       ? professional.photo?.url
       : professional.photo || undefined,
 
-  badge:
-    professional.emoji ||
-    professional.badge ||
-    undefined,
+badge: formatEmoji(
+  professional.emoji || professional.badge
+),
 
   profileHref: professional.slug
     ? `/equipe/${professional.slug}`

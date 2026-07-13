@@ -61,7 +61,7 @@ export const Professionals: CollectionConfig = {
       name: 'title',
       label: 'Titre',
       type: 'select',
-      required: true,
+      required: false,
       options: [
         {
           label: 'Docteur',
@@ -86,14 +86,14 @@ export const Professionals: CollectionConfig = {
       name: 'firstName',
       label: 'Prénom',
       type: 'text',
-      required: true,
+      required: false,
     },
 
     {
       name: 'lastName',
       label: 'Nom',
       type: 'text',
-      required: true,
+      required: false,
     },
 
     {

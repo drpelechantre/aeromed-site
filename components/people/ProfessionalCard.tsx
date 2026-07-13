@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+
+
 type ProfessionalCardProps = {
  title?: string;
   firstName: string;
@@ -120,6 +122,7 @@ function getProfessionTheme(profession: string): ProfessionTheme {
 }
 
 export default function ProfessionalCard({
+	
   title,
   firstName,
   lastName,
@@ -132,8 +135,9 @@ export default function ProfessionalCard({
   appointmentHref,
   appointmentExternal = true,
 }: ProfessionalCardProps) {
+	
   const theme = getProfessionTheme(profession)
-
+console.log("CARD BADGE :", badge)
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[34px] border border-slate-200/70 bg-white shadow-[0_14px_40px_rgba(15,23,42,0.065)] transition-all duration-500 hover:-translate-y-2 hover:border-slate-300/70 hover:shadow-[0_28px_70px_rgba(15,23,42,0.14)]">
       {/* Halo général au survol */}
