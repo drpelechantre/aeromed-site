@@ -38,6 +38,11 @@ export default buildConfig({
 
     {
       slug: 'specialties',
+	  
+	    admin: {
+    useAsTitle: "name",
+  },
+  
       labels: {
         singular: 'Spécialité',
         plural: 'Spécialités',
