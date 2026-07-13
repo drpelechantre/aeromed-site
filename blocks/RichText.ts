@@ -9,6 +9,17 @@ export const RichTextBlock: Block = {
     plural: 'Textes riches',
   },
 
+
+ admin: {
+    group: 'Présentation',
+    images: {
+      thumbnail: {
+        url: '/block-previews/richtext.png',
+        alt: 'Aperçu du layout Texte Riche',
+      },
+    },
+  },
+
   fields: [
     {
       name: 'content',

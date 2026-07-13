@@ -1,21 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getSiteSettings } from "@/lib/getSiteSettings";
-import "./globals.css";
 
 export const dynamic = 'force-dynamic'
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "MSP Aéromed | Toulouse Saint-Martin-du-Touch",
@@ -31,22 +18,15 @@ export default async function RootLayout({
 {
   const settings = await getSiteSettings();
 
-  return (
-    <html
-      lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
- <body className="min-h-full flex flex-col">
- 
+ return (
+  <>
+    <Header settings={settings} />
 
-  <Header settings={settings} />
+    <main className="flex-1">
+      {children}
+    </main>
 
-  <main className="flex-1">
-    {children}
-  </main>
-
-  <Footer settings={settings} />
-</body>
-    </html>
-  );
+    <Footer settings={settings} />
+  </>
+);
 }

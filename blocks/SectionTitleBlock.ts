@@ -8,7 +8,15 @@ export const SectionTitleBlock: Block = {
     singular: 'Titre de section',
     plural: 'Titres de section',
   },
-
+ admin: {
+    group: 'Présentation',
+    images: {
+      thumbnail: {
+        url: '/block-previews/sectiontitle.png',
+        alt: 'Aperçu du layout Titre de Section',
+      },
+    },
+  },
 
   fields: [
 

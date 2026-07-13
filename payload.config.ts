@@ -7,6 +7,9 @@ import { SiteSettings } from './globals/SiteSettings'
 import { Pages } from './collections/Pages'
 import { Media } from './collections/Media'
 import { Professionals } from './collections/Professionals'
+import { Specialties } from "./collections/Specialties";
+import { Articles } from "./collections/Articles";
+import { ArticleCategories } from "./collections/ArticleCategories";
 import sharp from 'sharp'
 
 console.log(
@@ -34,50 +37,10 @@ export default buildConfig({
     Pages,
     Media,
     Professionals,
-
-
-    {
-      slug: 'specialties',
-	  
-	    admin: {
-    useAsTitle: "name",
-  },
-  
-      labels: {
-        singular: 'Spécialité',
-        plural: 'Spécialités',
-      },
-      fields: [
-        {
-          name: 'name',
-          label: 'Nom',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'description',
-          label: 'Description',
-          type: 'textarea',
-        },
-        {
-          name: 'doctolibUrl',
-          label: 'Lien Doctolib',
-          type: 'text',
-        },
-        {
-          name: 'visible',
-          label: 'Visible',
-          type: 'checkbox',
-          defaultValue: true,
-        },
-        {
-          name: 'order',
-          label: 'Ordre',
-          type: 'number',
-        },
-      ],
-    },
-  ],
+	Specialties,
+	Articles,
+	ArticleCategories,
+	],
 
   globals: [SiteSettings],
 

@@ -9,7 +9,7 @@ export const DownloadBlock: Block = {
   },
   
    admin: {
-    group: 'Présentation',
+    group: 'Informations pratiques',
     images: {
       thumbnail: {
         url: '/block-previews/download.png',

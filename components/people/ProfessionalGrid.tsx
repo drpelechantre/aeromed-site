@@ -196,6 +196,7 @@ export default function ProfessionalGrid({
 				lastName={professional.lastName}
               profession={professional.profession}
               specialty={professional.specialty}
+			  specialtyLogo={professional.specialtyLogo}
               description={professional.description}
               photo={professional.photo}
               badge={professional.badge}

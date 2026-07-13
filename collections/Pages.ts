@@ -10,7 +10,7 @@ import { FeaturesBlock } from "../blocks/FeaturesBlock";
 import { StatsBlock } from "../blocks/StatsBlock";
 import { FAQBlock } from "../blocks/FAQBlock";
 import { GalleryBlock } from "../blocks/GalleryBlock";
-import { ArticlesBlock } from "../blocks/ArticlesBlock";
+import { ArticlesBlock } from "../blocks/Articles";
 import { MapBlock } from "../blocks/MapBlock";
 import { PartnersBlock } from "../blocks/PartnersBlock";
 import { DownloadBlock } from "../blocks/DownloadBlock";

@@ -9,7 +9,7 @@ export const ProfessionalsBlock: Block = {
   },
   
    admin: {
-    group: 'Présentation',
+    group: 'Santé et équipe',
     images: {
       thumbnail: {
         url: '/block-previews/profs.png',

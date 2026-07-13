@@ -9,7 +9,7 @@ export const FAQBlock: Block = {
   },
   
    admin: {
-    group: 'Présentation',
+    group: 'Informations pratiques',
     images: {
       thumbnail: {
         url: '/block-previews/faq.png',

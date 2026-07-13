@@ -8,6 +8,16 @@ export const CardsBlock: Block = {
     plural: 'Sections de cartes',
   },
 
+ admin: {
+    group: 'Présentation',
+    images: {
+      thumbnail: {
+        url: '/block-previews/sectioncartes.png',
+        alt: 'Aperçu du layout Section de Cartes',
+      },
+    },
+  },
+
   fields: [
     {
       name: 'eyebrow',

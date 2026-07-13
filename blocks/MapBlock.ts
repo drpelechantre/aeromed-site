@@ -9,7 +9,7 @@ export const MapBlock: Block = {
   },
 
  admin: {
-    group: 'Présentation',
+    group: 'Informations pratiques',
     images: {
       thumbnail: {
         url: '/block-previews/map.png',

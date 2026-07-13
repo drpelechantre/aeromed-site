@@ -98,6 +98,11 @@ export default async function ProfessionalsRenderer({ block }: Props) {
     professional.specialty?.name ||
     professional.specialty ||
     undefined,
+	
+	specialtyLogo:
+  typeof professional.specialty?.logo === "object"
+    ? professional.specialty.logo?.url
+    : undefined,
 
   description:
     professional.shortBio ||

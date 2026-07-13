@@ -9,7 +9,7 @@ export const StatsBlock: Block = {
   },
 
  admin: {
-    group: 'Présentation',
+    group: 'Informations pratiques',
     images: {
       thumbnail: {
         url: '/block-previews/stats.png',

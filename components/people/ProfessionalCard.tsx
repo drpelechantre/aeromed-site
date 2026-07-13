@@ -8,6 +8,7 @@ type ProfessionalCardProps = {
   lastName: string;
   profession: string;
   specialty?: string;
+  specialtyLogo?: string;
   description?: string;
   photo?: string;
   badge?: string;
@@ -133,6 +134,7 @@ export default function ProfessionalCard({
   badge,
   profileHref,
   appointmentHref,
+    specialtyLogo,
   appointmentExternal = true,
 }: ProfessionalCardProps) {
 	
@@ -192,35 +194,59 @@ console.log("CARD BADGE :", badge)
         <div className="absolute inset-x-7 bottom-0 z-20 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-60" />
       </div>
 
-      {/* Contenu */}
-      <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7">
-        {specialty && (
-          <div
-            className={`mb-4 inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold ${theme.accentSoft}`}
-          >
-            {specialty}
-          </div>
-        )}
+   {/* Contenu */}
+<div className="relative z-10 flex flex-1 flex-col overflow-hidden p-6 sm:p-7">
 
-     <h3 className="text-xl font-semibold leading-tight text-slate-900">
-  <span className="block">
-    {title} {firstName}
-  </span>
+  {specialtyLogo && (
+    <img
+      src={specialtyLogo}
+      alt=""
+      aria-hidden="true"
+      className="
+        pointer-events-none
+        absolute
+        right-3
+        top-3
+        w-40
+        opacity-[0.25]
+        transition-transform
+        duration-500
+        group-hover:scale-105
+      "
+    />
+  )}
 
-  <span className="block">
-    {lastName}
-  </span>
-</h3>
+  <div className="relative z-10">
 
-        <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
+    {specialty && (
+      <div
+        className={`mb-4 inline-flex w-fit rounded-full px-3 py-1.5 text-xs font-semibold ${theme.accentSoft}`}
+      >
+        {specialty}
+      </div>
+    )}
 
-        {description && (
-          <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">
-            {description}
-          </p>
-        )}
+    <h3 className="text-xl font-semibold leading-tight text-slate-900">
+      <span className="block">
+        {title} {firstName}
+      </span>
 
-        <div className="mt-auto pt-7">
+      <span className="block">
+        {lastName}
+      </span>
+    </h3>
+
+    <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
+
+    {description && (
+      <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">
+        {description}
+      </p>
+    )}
+
+  </div>
+
+  <div className="mt-auto pt-7">
           <div className="flex flex-col gap-3">
             {appointmentHref && (
               <Link

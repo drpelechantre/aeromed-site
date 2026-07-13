@@ -9,7 +9,7 @@ export const FeaturesBlock: Block = {
   },
 
  admin: {
-    group: 'Présentation',
+    group: 'Actualités et projets',
     images: {
       thumbnail: {
         url: '/block-previews/atouts.png',

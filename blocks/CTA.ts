@@ -8,7 +8,7 @@ export const CTA: Block = {
   },
   
    admin: {
-    group: 'Présentation',
+    group: 'Actualités et projets',
     images: {
       thumbnail: {
         url: '/block-previews/action.png',

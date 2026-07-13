@@ -7,6 +7,16 @@ export const PartnersBlock: Block = {
     singular: "Partenaires",
     plural: "Partenaires",
   },
+  
+   admin: {
+    group: 'Santé et équipe',
+    images: {
+      thumbnail: {
+        url: '/block-previews/partenaires.png',
+        alt: 'Aperçu du layout Partenaires',
+      },
+    },
+  },
 
   fields: [
     {

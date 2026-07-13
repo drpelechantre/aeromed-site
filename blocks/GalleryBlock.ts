@@ -8,6 +8,16 @@ export const GalleryBlock: Block = {
     plural: "Galeries photos",
   },
 
+ admin: {
+    group: 'Informations pratiques',
+    images: {
+      thumbnail: {
+        url: '/block-previews/galphotos.png',
+        alt: 'Aperçu du layout Galerie Photos',
+      },
+    },
+  },
+
   fields: [
     {
       name: "eyebrow",

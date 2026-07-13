@@ -7,6 +7,16 @@ export const HeroImage: Block = {
     singular: 'Hero avec image',
     plural: 'Heros avec image',
   },
+  
+   admin: {
+    group: 'Présentation',
+    images: {
+      thumbnail: {
+        url: '/block-previews/heroimage.png',
+        alt: 'Aperçu du layout Hero avec Image',
+      },
+    },
+  },
 
   fields: [
     {
