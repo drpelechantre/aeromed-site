@@ -104,7 +104,7 @@ function formatDate(date?: string | null) {
   }).format(parsed)
 }
 
-function getMediaUrl(media: MediaValue) {
+function getMediaUrl(media?: MediaValue) {
   if (!media || typeof media !== "object") {
     return null
   }
@@ -112,7 +112,7 @@ function getMediaUrl(media: MediaValue) {
   return media.url ?? null
 }
 
-function getMediaAlt(media: MediaValue) {
+function getMediaAlt(media?: MediaValue) {
   if (!media || typeof media !== "object") {
     return ""
   }
@@ -120,7 +120,7 @@ function getMediaAlt(media: MediaValue) {
   return media.alt ?? ""
 }
 
-function getAuthorName(author: AuthorValue) {
+function getAuthorName(author?: AuthorValue) {
   if (!author || typeof author !== "object") {
     return null
   }
