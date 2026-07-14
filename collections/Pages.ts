@@ -14,6 +14,7 @@ import { ArticlesBlock } from "../blocks/Articles";
 import { MapBlock } from "../blocks/MapBlock";
 import { PartnersBlock } from "../blocks/PartnersBlock";
 import { DownloadBlock } from "../blocks/DownloadBlock";
+import { AnnouncementsBlock } from "../blocks/AnnouncementsBlock"
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -59,7 +60,7 @@ access: {
 	CTA,
 	RichTextBlock,
 	CardsBlock,
-	
+	AnnouncementsBlock,
   ],
 },
   ],

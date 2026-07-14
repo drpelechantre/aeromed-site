@@ -10,6 +10,7 @@ import { Professionals } from './collections/Professionals'
 import { Specialties } from "./collections/Specialties";
 import { Articles } from "./collections/Articles";
 import { ArticleCategories } from "./collections/ArticleCategories";
+import { Announcements } from "./collections/Announcements"
 import sharp from 'sharp'
 
 console.log(
@@ -40,6 +41,7 @@ export default buildConfig({
 	Specialties,
 	Articles,
 	ArticleCategories,
+	Announcements,
 	],
 
   globals: [SiteSettings],

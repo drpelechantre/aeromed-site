@@ -15,6 +15,7 @@ import ArticlesRenderer from "./blocks/ArticlesRenderer";
 import MapRenderer from "./blocks/MapRenderer";
 import PartnersRenderer from "./blocks/PartnersRenderer";
 import DownloadRenderer from "./blocks/DownloadRenderer";
+import AnnouncementsRenderer from "./blocks/AnnouncementsRenderer";
 
 type Block = {
   id?: string | number | null;
@@ -40,6 +41,7 @@ const renderers: Record<string, ComponentType<any>> = {
   faq: FAQRenderer,
   gallery: GalleryRenderer,
   articles: ArticlesRenderer,
+  announcements: AnnouncementsRenderer,
   map: MapRenderer,
   partners: PartnersRenderer,
   download: DownloadRenderer,

@@ -74,6 +74,7 @@ export interface Config {
     specialties: Specialty;
     articles: Article;
     'article-categories': ArticleCategory;
+    announcements: Announcement;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
+    announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -417,6 +419,7 @@ export interface Page {
             blockName?: string | null;
             blockType: 'cards';
           }
+        | AnnouncementsBlock
       )[]
     | null;
   updatedAt: string;
@@ -499,6 +502,48 @@ export interface Specialty {
   order?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnnouncementsBlock".
+ */
+export interface AnnouncementsBlock {
+  /**
+   * Petit texte affiché au-dessus du titre, par exemple : Opportunités.
+   */
+  eyebrow?: string | null;
+  title: string;
+  /**
+   * Texte d’introduction affiché avant la liste des annonces.
+   */
+  description?: string | null;
+  /**
+   * Laisser vide pour afficher tous les types d’annonces.
+   */
+  type?:
+    | ('all' | 'recrutement' | 'remplacement' | 'collaboration' | 'location' | 'partenariat' | 'appel-projet' | 'autre')
+    | null;
+  limit?: number | null;
+  featuredOnly?: boolean | null;
+  /**
+   * Par défaut, seules les annonces actuellement ouvertes sont affichées.
+   */
+  showClosed?: boolean | null;
+  layout?: ('grid' | 'list') | null;
+  /**
+   * Affiche les premiers points clés de chaque annonce directement dans la liste.
+   */
+  showHighlights?: boolean | null;
+  showDate?: boolean | null;
+  showAuthor?: boolean | null;
+  emptyMessage?: string | null;
+  showAllButton?: boolean | null;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  background?: ('white' | 'soft' | 'gradient') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'announcements';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -603,6 +648,112 @@ export interface Article {
   createdAt: string;
 }
 /**
+ * Offres de recrutement, locations de locaux, remplacements, collaborations et autres opportunités.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements".
+ */
+export interface Announcement {
+  id: number;
+  title: string;
+  /**
+   * Adresse de la page. Générée automatiquement à partir du titre.
+   */
+  slug: string;
+  /**
+   * Texte court utilisé dans les cartes et les listes d’annonces.
+   */
+  excerpt: string;
+  /**
+   * Image facultative affichée sur la carte et la page de l’annonce.
+   */
+  coverImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  highlightsTitle?: string | null;
+  /**
+   * Exemples : missions, rémunération, loyer, surface, disponibilité ou organisation.
+   */
+  highlights?:
+    | {
+        icon?:
+          | (
+              | 'info'
+              | 'missions'
+              | 'profile'
+              | 'salary'
+              | 'rent'
+              | 'location'
+              | 'surface'
+              | 'calendar'
+              | 'clock'
+              | 'equipment'
+              | 'contact'
+            )
+          | null;
+        label: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Fiche de poste, présentation du local ou document complet au format PDF.
+   */
+  document?: (number | null) | Media;
+  documentLabel?: string | null;
+  /**
+   * Lien vers une fiche complète, un formulaire ou un site partenaire.
+   */
+  externalLink?: string | null;
+  externalLinkLabel?: string | null;
+  contactName?: string | null;
+  contactRole?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  contactButtonLabel?: string | null;
+  keywords?:
+    | {
+        keyword: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Facultatif. Le titre de l’annonce sera utilisé par défaut.
+   */
+  seoTitle?: string | null;
+  /**
+   * Facultatif. Le résumé de l’annonce sera utilisé par défaut.
+   */
+  seoDescription?: string | null;
+  type: 'recrutement' | 'remplacement' | 'collaboration' | 'location' | 'partenariat' | 'appel-projet' | 'autre';
+  status: 'draft' | 'open' | 'closed' | 'archived';
+  author?: (number | null) | User;
+  publishedAt: string;
+  /**
+   * Facultatif. La date pourra être affichée comme date limite ou disponibilité.
+   */
+  expiresAt?: string | null;
+  /**
+   * Permet d’afficher cette annonce dans les sélections de la page d’accueil.
+   */
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -653,6 +804,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'article-categories';
         value: number | ArticleCategory;
+      } | null)
+    | ({
+        relationTo: 'announcements';
+        value: number | Announcement;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -953,9 +1108,34 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        announcements?: T | AnnouncementsBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnnouncementsBlock_select".
+ */
+export interface AnnouncementsBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  type?: T;
+  limit?: T;
+  featuredOnly?: T;
+  showClosed?: T;
+  layout?: T;
+  showHighlights?: T;
+  showDate?: T;
+  showAuthor?: T;
+  emptyMessage?: T;
+  showAllButton?: T;
+  buttonLabel?: T;
+  buttonUrl?: T;
+  background?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1091,6 +1271,51 @@ export interface ArticleCategoriesSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   icon?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements_select".
+ */
+export interface AnnouncementsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  coverImage?: T;
+  content?: T;
+  highlightsTitle?: T;
+  highlights?:
+    | T
+    | {
+        icon?: T;
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  document?: T;
+  documentLabel?: T;
+  externalLink?: T;
+  externalLinkLabel?: T;
+  contactName?: T;
+  contactRole?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  contactButtonLabel?: T;
+  keywords?:
+    | T
+    | {
+        keyword?: T;
+        id?: T;
+      };
+  seoTitle?: T;
+  seoDescription?: T;
+  type?: T;
+  status?: T;
+  author?: T;
+  publishedAt?: T;
+  expiresAt?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
